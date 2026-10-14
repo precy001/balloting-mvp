@@ -1,0 +1,10 @@
+export type ElectionStatus = 'Draft' | 'Upcoming' | 'Ongoing' | 'Completed' | 'Suspended';
+export type ElectionType = 'Presidential' | 'Governorship' | 'Senatorial' | 'House of Representatives' | 'State House of Assembly' | 'Local Government Chairmanship' | 'Councillorship';
+export type ElectionJurisdiction = { state?: string; lga?: string; senatorialDistrict?: string; federalConstituency?: string; stateConstituency?: string; ward?: string };
+export type VoterProfile = { id: string; nin: string; fullName: string; dateOfBirth: string; stateOfResidence: string; registration: ElectionJurisdiction; voterRegistrationStatus: 'Registered' | 'Unregistered' | 'Suspended' };
+export type PoliticalParty = { id: string; name: string; acronym: string; color: string; logo?: string; fictional?: boolean };
+export type Candidate = { id: string; name: string; description?: string; partyId?: string; photo?: string; fictional?: boolean };
+export type Position = { id: string; title: string; candidates: Candidate[] };
+export type Ballot = { id: string; electionId: string; choices: Record<string,string>; submittedAt: string };
+export type VoterParticipation = { id: string; voterId: string; electionId: string; submittedAt: string };
+export type Election = { id: string; title: string; type: ElectionType; description: string; startAt: string; endAt: string; token: string; jurisdiction: ElectionJurisdiction; positions: Position[]; createdAt: string; resultsPublished: boolean; manualStatus?: 'Draft'|'Suspended'; image?: string };
